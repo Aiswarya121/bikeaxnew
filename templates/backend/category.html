@@ -1,0 +1,49 @@
+{% extends 'backend/index.html' %}
+
+
+{% block contentmain %}
+<div style="margin:5px 80px 5px 80px;">
+<div class="float-right">
+<div class="dropdown">
+        <a href="#" title="" class="btn btn-default" data-toggle="dropdown" aria-expanded="false">
+            <i class="fa fa-cog icon_8"></i>
+            <i class="fa fa-chevron-down icon_8"></i>
+        <div class="ripple-wrapper"></div></a>
+        <ul class="dropdown-menu float-right">
+          <li>
+              <a href="{% url 'addcategory' %}" title="">
+                  <i class="fa fa-pencil-square-o icon_9"></i>
+                  Add Category
+              </a>
+          </li>
+        </ul>
+    </div>
+  </div>
+  <table class="table">
+                     <tbody>
+                     {% for it in items %}
+                         <tr class="table-row">
+                             <td class="table-img">
+                                <img src="{{ it.Image.url }}" alt="" />
+                             </td>
+                             <td class="table-text">
+                             	<h6>{{ it.Name }}</h6>
+                                 <p>{{ it.Categories.Name }}</p>
+                             </td>
+                             <td>
+                             	<span class="fam">{{ it.product_set.count }}</span>
+                             </td>
+                             <td class="march">
+                                {{ it.Description }}
+                             </td>
+
+                              <td >
+ 							               <button class="button">Delete</button>
+
+                             </td>
+                         </tr>
+                          {% endfor %}
+                     </tbody>
+                 </table>
+            </div>
+{% endblock %}

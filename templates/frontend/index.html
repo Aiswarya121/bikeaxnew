@@ -1,0 +1,345 @@
+﻿<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+<title>Free Style A Ecommerce Category Flat Bootstarp Resposive Website Template | Home :: w3layouts</title>
+<link href="{% static 'frontend/css/bootstrap.css' %}" rel="stylesheet"  type="text/css" media="all" />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="{% static 'frontend/js/jquery-1.11.0.min.js' %}"></script>
+<!-- Custom Theme files -->
+<!--theme-style-->
+<link href="{% static 'frontend/css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+<!--//theme-style-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Free Style Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!--fonts-->
+<link href='http://fonts.googleapis.com/css?family=Alegreya+Sans+SC:100,300,400,500,700,800,900,100italic,300italic,400italic,500italic,700italic,800italic,900italic' rel='stylesheet' type='text/css' >
+<link href='http://fonts.googleapis.com/css? family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+<!--//fonts-->
+<script type="text/javascript" src="{% static 'frontend/js/move-top.js' %}"></script>
+<script type="text/javascript" src="{% static 'frontend/js/easing.js' %}"></script>
+<script type="text/javascript">
+					jQuery(document).ready(function($) {
+						$(".scroll").click(function(event){
+							event.preventDefault();
+							$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+						});
+					});
+				</script>
+<!-- start menu -->
+<script src="{% static 'frontend/js/simpleCart.min.js' %}"> </script>
+<link href="{% static 'frontend/css/memenu.css' %}" rel="stylesheet" type="text/css" media="all" />
+<script type="text/javascript" src="{% static 'frontend/js/memenu.js' %}"></script>
+<script>$(document).ready(function(){$(".memenu").memenu();});</script>
+</head>
+<body>
+	<!--top-header-->
+	<div class="container">
+		<div class="pull-right">
+		{% if request.user.is_authenticated %}
+			<p><a href="{% url 'auth_logout' %}" class="simpleCart_empty">LOGOUT</a></p>
+        {% else %}
+             <a class="active" href="{% url 'auth_login' %}">LOGIN</a>
+             <a class="active" href="{% url 'registration_register' %}">REGISTER</a>
+        {% endif %}
+		</div>
+	</div>
+	<div class="top-header">
+	<div class="container">
+		<div class="top-header-main">
+			<div class="col-md-4 top-header-left">
+				<div class="search-bar">
+				<form action="/search/" method="get">{% csrf_token %}
+
+					<input type="text" name="q" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
+					<input type="submit" value="">
+					</form>
+				</div>
+			</div>
+			<div class="col-md-4 top-header-middle">
+				<a href="index.html"><img src="{% static 'frontend/images/logo-4.png' %}" alt="" /></a>
+			</div>
+			<div class="col-md-4 top-header-right">
+				<div class="cart box_1">
+
+					{% if cart|length > 0 %}
+						<a href="{% url 'cart_detail' %}">
+						<h3>
+							<div class="total">
+							<span class="total">${{ cart.get_total_price }}</span>
+							(<span class="simpleCart">{{ cart|length }} items}</span>)
+						</div>
+							<img src="{% static 'frontend/images/cart-1.png' %}" alt="" />
+						</a>
+						<div class="clearfix"> </div>
+						{% else %}
+						Your cart is empty.
+
+				{% endif %}
+
+					</div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+</div>
+<!--top-header-->
+	<!--bottom-header-->
+	<div class="header-bottom">
+		<div class="container">
+			<div class="top-nav">
+				<ul class="memenu skyblue"><li class="active"><a href="/">Home</a></li>
+				{% if categories %}
+					{% for category in categories %}
+					<li class="grid"><a href="{% url 'category' pk=category.pk %}">{{ category.Name }}</a></li>
+					{% endfor %}
+					{% endif %}
+
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+
+	{% block content %}
+	<!--bottom-header-->
+	<!--banner-starts-->
+	<div class="bnr" id="home">
+		<div  id="top" class="callbacks_container">
+			<ul class="rslides" id="slider4">
+			    <li>
+					<div class="banner-1"></div>
+				</li>
+				<li>
+					<div class="banner-2"></div>
+				</li>
+				<li>
+					<div class="banner-3"></div>
+				</li>
+			</ul>
+		</div>
+		<div class="clearfix"> </div>
+	</div>
+	<!--banner-ends-->
+	<!--Slider-Starts-Here-->
+				<script src="{% static 'frontend/js/responsiveslides.min.js' %}"></script>
+			 <script>
+			    // You can also use "$(window).load(function() {"
+			    $(function () {
+			      // Slideshow 4
+			      $("#slider4").responsiveSlides({
+			        auto: true,
+			        pager: true,
+			        nav: false,
+			        speed: 500,
+			        namespace: "callbacks",
+			        before: function () {
+			          $('.events').append("<li>before event fired.</li>");
+			        },
+			        after: function () {
+			          $('.events').append("<li>after event fired.</li>");
+			        }
+			      });
+
+			    });
+			  </script>
+			<!--End-slider-script-->
+	<!--start-banner-bottom-->
+	<div class="banner-bottom">
+		<div class="container">
+			<div class="banner-bottom-top">
+			{% if productstwo %}
+					{% for product in productstwo %}
+				<div class="col-md-6 banner-bottom-left">
+					<div class="bnr-one">
+						<div class="bnr-left">
+							<h1><a href="{% url 'product_detail' pk=product.pk %}">{{ product.Name }}</a></h1>
+							<p>{{ product.Description }}p>
+							<div class="b-btn">
+								<a href="{% url 'product_detail' pk=product.pk %}">SHOP NOW</a>
+							</div>
+						</div>
+						<div class="bnr-right">
+							<a href="{% url 'product_detail' pk=product.pk %}">
+							{% if product.Image %}
+							<img src="{{ product.Image.url }}" alt="" height="130" width="200" />
+							{% endif %}
+							</a>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+				</div>
+					{% endfor %}
+				{% endif %}
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+	<!--end-banner-bottom-->
+	<!--start-shoes-->
+	<div class="shoes">
+		<div class="container">
+			<div class="product-one">
+				{% if products %}
+					{% for product in products %}
+				<div class="col-md-3 product-left">
+					<div class="p-one simpleCart_shelfItem">
+
+							<a href="{% url 'product_detail' pk=product.pk %}">
+								{% if product.Image %}
+									<img src="{{ product.Image.url }}" alt="" height="268" width="223" />
+								{% endif %}
+								<div class="mask">
+									<span>Quick View</span>
+								</div>
+							</a>
+						<h4>{{ product.Name }} </h4>
+						<p><a class="item_add" href="{% url 'product_detail' pk=product.pk %}"><i></i> <span class=" item_price">${{ product.Price }}</span></a></p>
+
+					</div>
+					</div>
+					{% endfor %}
+				{% endif %}
+
+				<div class="clearfix"> </div>
+
+		</div>
+
+		<div class="product-one">
+				{% if productsnext %}
+					{% for product in productsnext %}
+				<div class="col-md-3 product-left">
+					<div class="p-one simpleCart_shelfItem">
+
+							<a href="{% url 'product_detail' pk=product.pk %}">
+								{% if product.Image %}
+									<img src="{{ product.Image.url }}" alt="" height="268" width="223" />
+								{% endif %}
+								<div class="mask">
+									<span>Quick View</span>
+								</div>
+							</a>
+						<h4>{{ product.Name }} </h4>
+						<p><a class="item_add" href="{% url 'product_detail' pk=product.pk %}"><i></i> <span class=" item_price">${{ product.Price }}</span></a></p>
+
+					</div>
+					</div>
+					{% endfor %}
+				{% endif %}
+
+				<div class="clearfix"> </div>
+
+		</div>
+	</div>
+	<!--end-shoes-->
+	<!--start-abt-shoe-->
+	<div class="abt-shoe">
+		<div class="container">
+			<div class="abt-shoe-main">
+			{% if featured %}
+					{% for product in featured %}
+				<div class="col-md-4 abt-shoe-left">
+					<div class="abt-one">
+						<a href="{% url 'product_detail' pk=product.pk %}">
+						{% if product.Image %}
+						<img src="{{ product.Image.url }}" alt="" height="220" width="350" />
+						{% endif %}
+						</a>
+						<h4><a href="{% url 'product_detail' pk=product.pk %}">{{ product.Name }}</a></h4>
+						<p{{ product.Description }}</p>
+					</div>
+				</div>
+					{% endfor %}
+				{% endif %}
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+	<!--end-abt-shoe-->
+	<!--start-footer-->
+	{% endblock %}
+	<div class="footer">
+		<div class="container">
+			<div class="footer-top">
+				<div class="col-md-3 footer-left">
+					<h3>ABOUT US</h3>
+					<ul>
+						<li><a href="#">Who We Are</a></li>
+						<li><a href="contact.html">Contact Us</a></li>
+						<li><a href="#">Our Sites</a></li>
+						<li><a href="#">In The News</a></li>
+						<li><a href="#">Team</a></li>
+						<li><a href="#">Carrers</a></li>
+					</ul>
+				</div>
+				<div class="col-md-3 footer-left">
+					<h3>YOUR ACCOUNT</h3>
+					<ul>
+						<li><a href="account.html">Your Account</a></li>
+						<li><a href="#">Personal Information</a></li>
+						<li><a href="contact.html">Addresses</a></li>
+						<li><a href="#">Discount</a></li>
+						<li><a href="#">Track your order</a></li>
+					</ul>
+				</div>
+				<div class="col-md-3 footer-left">
+					<h3>CUSTOMER SERVICES</h3>
+					<ul>
+						<li><a href="#">FAQ</a></li>
+						<li><a href="#">Shipping</a></li>
+						<li><a href="#">Cancellation</a></li>
+						<li><a href="#">Returns</a></li>
+						<li><a href="#">Bulk Orders</a></li>
+						<li><a href="#">Buying Guides</a></li>
+					</ul>
+				</div>
+				<div class="col-md-3 footer-left">
+					<h3>CATEGORIES</h3>
+					<ul>
+						<li><a href="#">Sports Shoes</a></li>
+						<li><a href="#">Casual Shoes</a></li>
+						<li><a href="#">Formal Shoes</a></li>
+						<li><a href="#">Party Shoes</a></li>
+						<li><a href="#">Ethnic</a></li>
+					</ul>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+	<!--end-footer-->
+	<!--end-footer-text-->
+	<div class="footer-text">
+		<div class="container">
+			<div class="footer-main">
+				<p class="footer-class">© 2015 Free Style All Rights Reserved | Design by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
+			</div>
+			<a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+		</div>
+		<script type="text/javascript">
+									$(document).ready(function() {
+										/*
+										var defaults = {
+								  			containerID: 'toTop', // fading element id
+											containerHoverID: 'toTopHover', // fading element hover id
+											scrollSpeed: 1200,
+											easingType: 'linear'
+								 		};
+										*/
+
+										$().UItoTop({ easingType: 'easeOutQuart' });
+
+									});
+								</script>
+
+	</div>
+	<!--end-footer-text-->
+</body>
+</html>

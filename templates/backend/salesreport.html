@@ -1,0 +1,72 @@
+{% extends 'backend/index.html' %}
+
+{% load static %}
+{% load widget_tweaks %}
+
+
+
+{% block contentmain %}
+
+
+<!--//grid-->
+<div class="graph">
+<div class="graph-grid">
+	<div class="col-md-12 graph-1">
+		<div class="grid-1">
+									<h4>SALES REPORT</h4>
+									<canvas id="bar1" height="500" width="1000" style="width: 1000px; height: 500px;"></canvas>
+									<script>
+										var barChartData = {
+											labels : ["Mon","Tue","Wed","Thu","Fri","Sat","Mon","Tue","Wed","Thu"],
+											datasets : [
+												{
+													fillColor : "#FBB03B",
+													strokeColor : "#FBB03B",
+													data : [25,40,50,65,55,30,20,10,6,4]
+												},
+												{
+													fillColor : "#FBB03B",
+													strokeColor : "#FBB03B",
+													data : [30,45,55,70,40,25,15,8,5,2]
+												}
+											]
+
+										};
+											new Chart(document.getElementById("bar1").getContext("2d")).Bar(barChartData);
+									</script>
+								</div>
+	</div>
+
+		</div>
+			</div>
+		<div class="clearfix"> </div>
+
+
+		 <table class="table">
+		                    <tbody>
+		                    {% for user in users %}
+		                        <tr class="table-row">
+		                            <td class="table-img">
+		                               <img src="images/in.jpg" alt="" />
+		                            </td>
+		                            <td class="table-text">
+		                            	<h6>{{ user.username }}</h6>
+		                                <p>{{ user.user_details.address }}</p>
+		                            </td>
+		                            <td>
+		                            	<span class="fam">{{ user.user_details.phonenumber }}</span>
+		                            </td>
+		                            <td class="march">
+		                               in 5 days
+		                            </td>
+
+		                             <td >
+									 <i class="fa fa-star-half-o icon-state-warning"></i>
+
+		                            </td>
+		                        </tr>
+		                         {% endfor %}
+		                    </tbody>
+		                </table>
+
+{% endblock %}
